@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  outputFileTracingRoot: "/Users/joaquinlasalde/Desktop/Proyectos/PixelAr/pixelar-website",
 };
 
 export default nextConfig;
