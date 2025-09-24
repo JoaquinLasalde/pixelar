@@ -1,7 +1,7 @@
 import { Service, PortfolioItem, Testimonial, ProcessStep, ContactInfo, Statistic } from '@/types';
 
 export const contactInfo: ContactInfo = {
-  whatsapp: "+54 9 11 2345-6789",
+  whatsapp: "+54 9 11 5464-1503",
   email: "hola@pixelar.com.ar",
   location: "Buenos Aires, Argentina",
   workingHours: "Lun - Vie: 9:00 - 18:00 hs"
@@ -82,6 +82,21 @@ export const services: Service[] = [
     priceFrom: "$120.000",
     icon: "zap",
     category: "automation"
+  },
+  {
+    id: "otro-desarrollo",
+    title: "Otro Desarrollo",
+    description: "Proyecto personalizado según tus necesidades específicas. Desarrollo a medida para cualquier requerimiento.",
+    features: [
+      "Análisis de requerimientos",
+      "Propuesta personalizada",
+      "Desarrollo a medida",
+      "Consultoría técnica",
+      "Soporte especializado"
+    ],
+    priceFrom: "A definir",
+    icon: "code",
+    category: "custom"
   }
 ];
 

@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
               
               <div className="space-y-4">
                 <a
-                  href={`https://wa.me/5491123456789?text=${encodeURIComponent('¡Hola! Te escribo desde el sitio web de PixelAr.')}`}
+                  href={`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Te escribo desde el sitio web de PixelAr.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-text-secondary hover:text-accent-green transition-colors duration-200 group"

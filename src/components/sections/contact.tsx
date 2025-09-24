@@ -73,7 +73,7 @@ Mensaje: ${formData.message}
 ¡Espero tu respuesta!
     `.trim());
 
-    window.open(`https://wa.me/5491123456789?text=${message}`, '_blank');
+    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
     
     setIsSubmitting(false);
     setSubmitted(true);
@@ -85,7 +85,7 @@ Mensaje: ${formData.message}
       title: 'WhatsApp',
       description: 'Respuesta inmediata',
       value: contactInfo.whatsapp,
-      action: () => window.open(`https://wa.me/5491123456789?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios.')}`, '_blank'),
+      action: () => window.open(`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios.')}`, '_blank'),
       primary: true,
     },
     {
@@ -100,8 +100,8 @@ Mensaje: ${formData.message}
       icon: Phone,
       title: 'Teléfono',
       description: 'Para charlas directas',
-      value: '+54 9 11 2345-6789',
-      action: () => window.open('tel:+5491123456789', '_blank'),
+      value: '+54 9 11 5464-1503',
+      action: () => window.open('tel:+5491154641503', '_blank'),
       primary: false,
     },
   ];
@@ -463,7 +463,7 @@ Mensaje: ${formData.message}
             <Button 
               variant="outline" 
               size="lg"
-              onClick={() => window.open(`https://wa.me/5491123456789?text=${encodeURIComponent('¡Hola! Me gustaría agendar una consulta gratuita de 15 minutos para hablar sobre mi proyecto.')}`, '_blank')}
+              onClick={() => window.open(`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Me gustaría agendar una consulta gratuita de 15 minutos para hablar sobre mi proyecto.')}`, '_blank')}
             >
               <MessageCircle className="h-5 w-5 mr-2" />
               Agendar consulta gratuita

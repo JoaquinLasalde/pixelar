@@ -38,7 +38,7 @@ const WhatsAppFloat: React.FC = () => {
     const message = encodeURIComponent(
       '¡Hola! Me interesa saber más sobre los servicios de PixelAr. ¿Podrías contarme más detalles?'
     );
-    const whatsappUrl = `https://wa.me/5491123456789?text=${message}`;
+    const whatsappUrl = `https://wa.me/5491154641503?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 

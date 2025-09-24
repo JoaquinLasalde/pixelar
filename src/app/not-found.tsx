@@ -54,7 +54,7 @@ export default function NotFound() {
             ¿No encontrás lo que buscás?
           </p>
           <button
-            onClick={() => window.open('https://wa.me/5491123456789?text=Hola! No encontré lo que buscaba en el sitio web', '_blank')}
+            onClick={() => window.open('https://wa.me/5491154641503?text=Hola! No encontré lo que buscaba en el sitio web', '_blank')}
             className="text-accent-green hover:text-accent-blue transition-colors font-medium"
           >
             Contactanos por WhatsApp →

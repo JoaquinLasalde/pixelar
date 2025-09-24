@@ -48,7 +48,7 @@ const Process: React.FC = () => {
     const message = encodeURIComponent(
       '¡Hola! Me interesa empezar un proyecto web. ¿Podemos agendar la consulta gratuita de 15 minutos?'
     );
-    window.open(`https://wa.me/5491123456789?text=${message}`, '_blank');
+    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
   };
 
   return (

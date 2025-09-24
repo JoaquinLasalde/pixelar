@@ -51,6 +51,7 @@ const Services: React.FC = () => {
     { id: 'ecommerce', label: 'E-commerce', count: services.filter(s => s.category === 'ecommerce').length },
     { id: 'landing', label: 'Landing Pages', count: services.filter(s => s.category === 'landing').length },
     { id: 'maintenance', label: 'Mantenimiento', count: services.filter(s => s.category === 'maintenance').length },
+    { id: 'custom', label: 'Desarrollo Personalizado', count: services.filter(s => s.category === 'custom').length },
   ];
 
   const filteredServices = selectedCategory === 'all' 
@@ -61,7 +62,7 @@ const Services: React.FC = () => {
     const message = encodeURIComponent(
       `¡Hola! Me interesa el servicio de ${serviceTitle}. ¿Podrías contarme más detalles sobre precios y tiempos?`
     );
-    window.open(`https://wa.me/5491123456789?text=${message}`, '_blank');
+    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
   };
 
   return (

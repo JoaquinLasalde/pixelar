@@ -77,7 +77,7 @@ const Header: React.FC = () => {
             <div className="hidden md:block">
               <button 
                 className="neon-button text-heading"
-                onClick={() => window.open('https://wa.me/5491123456789?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank')}
+                onClick={() => window.open('https://wa.me/5491154641503?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank')}
               >
                 Consultá Gratis
               </button>
@@ -117,7 +117,7 @@ const Header: React.FC = () => {
                 <button
                   className="neon-button text-heading mt-4"
                   onClick={() => {
-                    window.open('https://wa.me/5491123456789?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank');
+                    window.open('https://wa.me/5491154641503?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank');
                     setIsMobileMenuOpen(false);
                   }}
                 >

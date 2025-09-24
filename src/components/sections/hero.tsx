@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
     const message = encodeURIComponent(
       '¡Hola! Me interesa la consulta gratuita para mi negocio. ¿Cuándo podemos hablar?'
     );
-    window.open(`https://wa.me/5491123456789?text=${message}`, '_blank');
+    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
   };
 
   const scrollToPortfolio = () => {
@@ -41,17 +41,132 @@ const Hero: React.FC = () => {
 
   return (
     <section id="inicio" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Organic background elements */}
+      {/* Organic background elements with enhanced visibility */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-80 bg-blue-500/5 blur-3xl" style={{
-          clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
-        }}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-72 bg-green-500/5 blur-3xl" style={{
-          clipPath: 'polygon(40% 0%, 60% 0%, 100% 40%, 100% 60%, 60% 100%, 40% 100%, 0% 60%, 0% 40%)'
-        }}></div>
-        <div className="absolute top-1/2 right-1/3 w-48 h-56 bg-accent-blue/3 blur-2xl" style={{
-          clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
-        }}></div>
+        {/* Main large shapes */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/20 via-blue-400/10 to-transparent blur-3xl"
+          style={{
+            clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-green-500/25 via-green-400/15 to-transparent blur-3xl"
+          style={{
+            clipPath: 'polygon(40% 0%, 60% 0%, 100% 40%, 100% 60%, 60% 100%, 40% 100%, 0% 60%, 0% 40%)'
+          }}
+          animate={{
+            scale: [1, 0.9, 1],
+            rotate: [0, -3, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        ></motion.div>
+
+        {/* Accent shapes */}
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-accent-blue/30 via-purple-500/15 to-transparent blur-2xl"
+          style={{
+            clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
+
+        {/* Additional decorative elements */}
+        <motion.div
+          className="absolute top-1/6 left-1/2 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-transparent blur-xl rounded-full"
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+
+        <motion.div
+          className="absolute bottom-1/3 left-1/6 w-48 h-48 bg-gradient-to-br from-yellow-500/15 to-transparent blur-2xl"
+          style={{
+            clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            rotate: [0, 15, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        ></motion.div>
+
+        {/* Floating particles */}
+        <motion.div
+          className="absolute top-1/3 right-1/6 w-4 h-4 bg-accent-blue/40 rounded-full blur-sm"
+          animate={{
+            y: [0, -100, 0],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+
+        <motion.div
+          className="absolute bottom-1/2 left-2/3 w-3 h-3 bg-accent-green/50 rounded-full blur-sm"
+          animate={{
+            y: [0, 80, 0],
+            opacity: [0.5, 0.9, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
+
+        <motion.div
+          className="absolute top-2/3 right-1/4 w-2 h-2 bg-pink-500/60 rounded-full blur-sm"
+          animate={{
+            x: [0, -50, 0],
+            opacity: [0.6, 1, 0.6],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4
+          }}
+        ></motion.div>
       </div>
 
       {/* Main Content */}

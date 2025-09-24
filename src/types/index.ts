@@ -7,7 +7,7 @@ export interface Service {
   features: string[];
   priceFrom: string;
   icon: string;
-  category: 'web' | 'ecommerce' | 'landing' | 'maintenance' | 'automation';
+  category: 'web' | 'ecommerce' | 'landing' | 'maintenance' | 'automation' | 'custom';
 }
 
 export interface PortfolioItem {
