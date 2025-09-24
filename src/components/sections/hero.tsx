@@ -5,11 +5,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(
-      '¡Hola! Me interesa la consulta gratuita para mi negocio. ¿Cuándo podemos hablar?'
-    );
-    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
+  const handleContactClick = () => {
+    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToPortfolio = () => {
@@ -221,10 +218,10 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 pb-24"
           >
             <button
-              onClick={handleWhatsAppClick}
+              onClick={handleContactClick}
               className="neon-button flex items-center gap-2 text-base sm:text-lg px-8 py-4 text-heading"
             >
-              Consultá Gratis
+              Empezar Proyecto
               <ArrowRight className="w-5 h-5" />
             </button>
             

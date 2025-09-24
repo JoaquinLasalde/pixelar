@@ -98,6 +98,14 @@ const Footer: React.FC = () => {
               
               <div className="space-y-4">
                 <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="flex items-center text-text-secondary hover:text-accent-blue transition-colors duration-200 group"
+                >
+                  <Mail className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
+                  {contactInfo.email}
+                </a>
+
+                <a
                   href={`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Te escribo desde el sitio web de PixelAr.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -105,14 +113,6 @@ const Footer: React.FC = () => {
                 >
                   <MessageCircle className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                   {contactInfo.whatsapp}
-                </a>
-                
-                <a
-                  href={`mailto:${contactInfo.email}`}
-                  className="flex items-center text-text-secondary hover:text-accent-blue transition-colors duration-200 group"
-                >
-                  <Mail className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
-                  {contactInfo.email}
                 </a>
                 
                 <div className="flex items-center text-text-secondary">
@@ -123,10 +123,10 @@ const Footer: React.FC = () => {
 
               <div className="mt-6 p-4 bg-dark-secondary rounded-lg border border-dark-tertiary">
                 <p className="text-sm text-text-secondary mb-2">
-                  <strong className="text-accent-green">Respuesta típica:</strong> &lt; 2 horas
+                  <strong className="text-accent-blue">Email recomendado</strong> para consultas detalladas
                 </p>
                 <p className="text-sm text-text-secondary">
-                  <strong className="text-accent-blue">Horarios:</strong> {contactInfo.workingHours}
+                  <strong className="text-accent-green">Horarios:</strong> {contactInfo.workingHours}
                 </p>
               </div>
             </motion.div>

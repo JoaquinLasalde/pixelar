@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Mail, MapPin, Clock, Send, Phone, Calendar } from 'lucide-react';
+import { MessageCircle, Mail, MapPin, Clock, Send, Phone, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { contactInfo } from '@/data';
@@ -20,6 +20,7 @@ const Contact: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,52 +49,94 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // In a real app, you would send this data to your backend
-    // For now, we'll redirect to WhatsApp with the form data
-    const message = encodeURIComponent(`
-¡Hola! Te escribo desde pixelar.com.ar
+    const form = e.currentTarget;
 
-Mis datos:
-• Nombre: ${formData.name}
-• Email: ${formData.email}
-• Teléfono: ${formData.phone}
-• Tipo de proyecto: ${formData.projectType}
-• Presupuesto: ${formData.budget}
-• Timeline: ${formData.timeline}
+    try {
+      const formDataToSend = new FormData(form);
 
-Mensaje: ${formData.message}
+      // Agregar campos personalizados
+      formDataToSend.append('_subject', `Nueva consulta desde PixelAr - ${formData.name}`);
+      formDataToSend.append('_next', window.location.href); // Redireccionar a la misma página
 
-¡Espero tu respuesta!
-    `.trim());
+      // Usar Web3Forms como alternativa más confiable
+      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      if (!web3FormsKey) {
+        throw new Error('Web3Forms key no configurada. Asegúrate de que NEXT_PUBLIC_WEB3FORMS_KEY esté en tu .env.local');
+      }
 
-    window.open(`https://wa.me/5491154641503?text=${message}`, '_blank');
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
+      const web3FormData = {
+        access_key: web3FormsKey, // Key de Web3Forms desde .env
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        projectType: formData.projectType,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        message: formData.message,
+        subject: `Nueva consulta desde PixelAr - ${formData.name}`
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(web3FormData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Web3Forms response:', result);
+
+        setSubmitted(true);
+        // Reset form
+        form.reset();
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          budget: '',
+          message: '',
+          timeline: '',
+        });
+      } else {
+        const errorText = await response.text();
+        console.error('Web3Forms error:', response.status, errorText);
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+    } catch (err) {
+      console.error('Error sending email:', err);
+      setError(`Hubo un error al enviar el mensaje: ${err instanceof Error ? err.message : 'Error desconocido'}. Intenta por WhatsApp.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
     {
-      icon: MessageCircle,
-      title: 'WhatsApp',
-      description: 'Respuesta inmediata',
-      value: contactInfo.whatsapp,
-      action: () => window.open(`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios.')}`, '_blank'),
+      icon: Mail,
+      title: 'Email',
+      description: 'Método recomendado',
+      value: 'Formulario abajo',
+      action: () => {
+        // Scroll to contact form
+        document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+      },
       primary: true,
     },
     {
-      icon: Mail,
-      title: 'Email',
-      description: 'Consultas detalladas',
-      value: contactInfo.email,
-      action: () => window.open(`mailto:${contactInfo.email}?subject=Consulta desde PixelAr&body=Hola, me interesa conocer más sobre tus servicios.`, '_blank'),
+      icon: MessageCircle,
+      title: 'WhatsApp',
+      description: 'Respuesta rápida',
+      value: contactInfo.whatsapp,
+      action: () => window.open(`https://wa.me/5491154641503?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios.')}`, '_blank'),
       primary: false,
     },
     {
@@ -272,11 +315,11 @@ Mensaje: ${formData.message}
                 className="text-center py-12"
               >
                 <div className="w-20 h-20 bg-accent-green rounded-full flex items-center justify-center mx-auto mb-6">
-                  <MessageCircle className="h-10 w-10 text-dark-primary" />
+                  <CheckCircle className="h-10 w-10 text-dark-primary" />
                 </div>
                 <h4 className="text-2xl font-bold text-text-primary mb-4">¡Mensaje enviado!</h4>
                 <p className="text-text-secondary mb-6">
-                  Te redirigimos a WhatsApp para que puedas enviar tu consulta directamente.
+                  Gracias por contactarnos. Hemos recibido tu consulta y te responderemos a la brevedad por email.
                 </p>
                 <Button variant="outline" onClick={() => setSubmitted(false)}>
                   Enviar otro mensaje
@@ -285,7 +328,19 @@ Mensaje: ${formData.message}
             ) : (
               <Card variant="glass" className="border-accent-blue/20">
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center space-x-3"
+                    >
+                      <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </motion.div>
+                  )}
+
+                  <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
                     {/* Name and Email */}
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>

@@ -75,11 +75,11 @@ const Header: React.FC = () => {
 
             {/* CTA Button - Desktop */}
             <div className="hidden md:block">
-              <button 
+              <button
                 className="neon-button text-heading"
-                onClick={() => window.open('https://wa.me/5491154641503?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank')}
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Consultá Gratis
+                Contactame
               </button>
             </div>
 
@@ -117,11 +117,11 @@ const Header: React.FC = () => {
                 <button
                   className="neon-button text-heading mt-4"
                   onClick={() => {
-                    window.open('https://wa.me/5491154641503?text=Hola! Me interesa saber más sobre los servicios de PixelAr', '_blank');
+                    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
                     setIsMobileMenuOpen(false);
                   }}
                 >
-                  Consultá Gratis
+                  Contactame
                 </button>
               </div>
             </div>
